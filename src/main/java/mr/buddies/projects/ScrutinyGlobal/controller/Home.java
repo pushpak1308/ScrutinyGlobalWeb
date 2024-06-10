@@ -11,7 +11,7 @@ public class Home {
     @RequestMapping("/welcome")
     public String welcome() {
         String text = "this is private page ";
-        text+= "this page is not allowed to unauthenticated users";
+        text+= " you allow for this users";
         return text;
     }
 
