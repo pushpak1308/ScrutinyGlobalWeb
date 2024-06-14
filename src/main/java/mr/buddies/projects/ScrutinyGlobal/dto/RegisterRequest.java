@@ -18,8 +18,11 @@ public class RegisterRequest {
 	    private String city;
 	    private String zipcode;
 	    private String profession;
-	    private String acountType;
+	    private String accountType;
 	    private String monthlySalary;
+	    private String address;
+	    private Integer otp;
+	    
 	   
 	   
 	    
@@ -89,17 +92,30 @@ public class RegisterRequest {
 		public void setProfession(String profession) {
 			this.profession = profession;
 		}
-		public String getAcountType() {
-			return acountType;
-		}
-		public void setAcountType(String acountType) {
-			this.acountType = acountType;
-		}
+		
 		public String getMonthlySalary() {
 			return monthlySalary;
 		}
 		public void setMonthlySalary(String monthlySalary) {
 			this.monthlySalary = monthlySalary;
+		}
+		public Integer getOtp() {
+			return otp;
+		}
+		public void setOtp(Integer otp) {
+			this.otp = otp;
+		}
+		public String getAccountType() {
+			return accountType;
+		}
+		public void setAccountType(String accountType) {
+			this.accountType = accountType;
+		}
+		public String getAddress() {
+			return address;
+		}
+		public void setAddress(String address) {
+			this.address = address;
 		}
 	
 	    

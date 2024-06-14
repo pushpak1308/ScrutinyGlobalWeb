@@ -10,6 +10,7 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 
+import mr.buddies.projects.ScrutinyGlobal.exception.UserAlreadyExist;
 import mr.buddies.projects.ScrutinyGlobal.exception.UserNotFoundException;
 
 @RestControllerAdvice
@@ -28,6 +29,14 @@ public class ApplicationExceptionHandeler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(UserNotFoundException.class)
     public Map<String, String> handleBusinessException(UserNotFoundException ex) {
+        Map<String, String> errorMap = new HashMap<>();
+        errorMap.put("errorMessage", ex.getMessage());
+        return errorMap;
+    }
+    
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(UserAlreadyExist.class)
+    public Map<String, String> handleUserException(UserAlreadyExist ex) {
         Map<String, String> errorMap = new HashMap<>();
         errorMap.put("errorMessage", ex.getMessage());
         return errorMap;
