@@ -1,5 +1,6 @@
 package mr.buddies.projects.ScrutinyGlobal.config;
 
+import mr.buddies.projects.ScrutinyGlobal.helper.MD5PasswordEncoder;
 import mr.buddies.projects.ScrutinyGlobal.services.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -40,7 +41,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/token","/ScrutinyGlobal/**").permitAll()
+                .antMatchers("/login","/ScrutinyGlobal/**").permitAll()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -60,7 +61,8 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+//        return NoOpPasswordEncoder.getInstance();
+    	return new MD5PasswordEncoder();
     }
 
     @Bean

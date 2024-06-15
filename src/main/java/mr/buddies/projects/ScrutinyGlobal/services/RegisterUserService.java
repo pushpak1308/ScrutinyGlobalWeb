@@ -1,5 +1,6 @@
 package mr.buddies.projects.ScrutinyGlobal.services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -16,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import mr.buddies.projects.ScrutinyGlobal.dto.OtpVerifing;
 import mr.buddies.projects.ScrutinyGlobal.dto.RegisterRequest;
 import mr.buddies.projects.ScrutinyGlobal.dto.SettingRoleRquest;
+import mr.buddies.projects.ScrutinyGlobal.dto.UserFilter;
 import mr.buddies.projects.ScrutinyGlobal.exception.UserAlreadyExist;
 import mr.buddies.projects.ScrutinyGlobal.model.RegisterUser;
 import mr.buddies.projects.ScrutinyGlobal.model.VenderDetails;
@@ -88,6 +90,38 @@ public class RegisterUserService {
 			   
 			   return registerUserRepository.findAllUserForAprovel();
 		   }
+		  public List<RegisterUser> getAllActiveUser(){
+					   
+					   return registerUserRepository.findAllActiveUser();
+				   }
+		  public List<RegisterUser> getUserList(UserFilter userFilter){
+			  int aprove=0;
+			  if(userFilter.isAprove())
+				  aprove=1;
+				  Boolean accountCheck=null;
+				  Boolean countryCheck=null;
+				  Boolean professionCheck=null;
+				
+				List<String> accountType=new ArrayList<String>();
+				List<String> country=new ArrayList<String>();
+				List<String> profession=new ArrayList<String>();
+				
+				if(userFilter.getAccountType()!=null) {
+					accountCheck=true;
+					accountType.addAll(userFilter.getAccountType());
+				}
+				if(userFilter.getCountry()!=null) {
+					countryCheck=true;
+					country.addAll(userFilter.getCountry());
+				}
+				if(userFilter.getProfession()!=null) {
+					professionCheck=true;
+					profession.addAll(userFilter.getProfession());
+				}
+			   
+			   return registerUserRepository.findUserList(accountCheck,countryCheck,professionCheck,accountType,country,profession,aprove);
+		   }
+
 
 		   @Transactional
 		   public boolean giveRoleToUser(SettingRoleRquest settingRoleRquest) {

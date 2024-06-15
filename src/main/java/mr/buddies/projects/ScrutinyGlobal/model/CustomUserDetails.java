@@ -9,16 +9,17 @@ import java.util.List;
 
 public class CustomUserDetails implements UserDetails {
 
-    private User user;
+    private RegisterUser user;
+    
 
-    public CustomUserDetails(User user) {
+    public CustomUserDetails(RegisterUser user) {
         this.user = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
-        SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(user.getRol());
+        SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority("admin");
         return List.of(simpleGrantedAuthority);
     }
 
@@ -29,7 +30,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return user.getEmail();
     }
 
     @Override

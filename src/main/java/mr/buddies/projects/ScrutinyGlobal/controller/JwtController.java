@@ -1,9 +1,14 @@
 package mr.buddies.projects.ScrutinyGlobal.controller;
 
+import mr.buddies.projects.ScrutinyGlobal.exception.ErrorMsgException;
 import mr.buddies.projects.ScrutinyGlobal.helper.JwtUtil;
+import mr.buddies.projects.ScrutinyGlobal.helper.SessionStore;
 import mr.buddies.projects.ScrutinyGlobal.model.JwtRequest;
 import mr.buddies.projects.ScrutinyGlobal.model.JwtResponse;
 import mr.buddies.projects.ScrutinyGlobal.services.CustomUserDetailsService;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,8 +32,8 @@ public class JwtController {
     @Autowired
     private JwtUtil jwtUtil;
 
-    @RequestMapping(value = "/token", method = RequestMethod.POST)
-    public ResponseEntity<?> generateToken(@RequestBody JwtRequest jwtRequest) throws Exception {
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public ResponseEntity<?> generateToken(@RequestBody JwtRequest jwtRequest) throws ErrorMsgException,Exception  {
 
         System.out.println("Inside Controller");
         System.out.println(jwtRequest);
@@ -37,19 +42,22 @@ public class JwtController {
             this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(), jwtRequest.getPassword()));
 
 
-        } catch (UsernameNotFoundException e) {
-            e.printStackTrace();
-            throw new Exception("Bad Credentials");
         }catch (BadCredentialsException e)
         {
             e.printStackTrace();
-            throw new Exception("Bad Credentials");
+            throw new ErrorMsgException(e.getMessage());
         }
-
-
-        //fine area..
+//        UserDetails userDetails=null;
+        HttpSession session=SessionStore.getSession();
+        System.out.println(session.getAttribute("userAprovel")+"-----userAprovel");
+        if(session.getAttribute("userAprovel").equals(0))
+        {
+        	throw new ErrorMsgException("Waiting for aprovel");
+        }
         UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(jwtRequest.getUsername());
-
+		
+        //fine area..
+      
         String token = this.jwtUtil.generateToken(userDetails);
         System.out.println("JWT " + token);
 

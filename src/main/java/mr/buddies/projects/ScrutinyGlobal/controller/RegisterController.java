@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import mr.buddies.projects.ScrutinyGlobal.dto.OtpVerifing;
 import mr.buddies.projects.ScrutinyGlobal.dto.RegisterRequest;
 import mr.buddies.projects.ScrutinyGlobal.dto.SettingRoleRquest;
+import mr.buddies.projects.ScrutinyGlobal.dto.UserFilter;
 import mr.buddies.projects.ScrutinyGlobal.exception.ErrorMsgException;
 import mr.buddies.projects.ScrutinyGlobal.exception.UserAlreadyExist;
 import mr.buddies.projects.ScrutinyGlobal.helper.MD5Util;
@@ -122,7 +123,43 @@ public class RegisterController {
 		 return ResponseEntity.ok(registerRequestList);
 		 
 	}
-	
+	@GetMapping("/getAllActiveUserList")
+	public ResponseEntity<?> getAllActiveUserList() throws Exception {
+		
+		List<RegisterUser> registerRequestList=new ArrayList<RegisterUser>();
+		 try {
+			 registerRequestList=registerUserService.getAllActiveUser();		
+	          
+
+	        } catch (Exception e) {
+//	            e.printStackTrace();
+	            throw new ErrorMsgException(e.getMessage());
+	            
+	        }
+		 return ResponseEntity.ok(registerRequestList);
+		 
+	}
+	@PostMapping("/getUserList")
+	public ResponseEntity<?> getUserList(@RequestBody UserFilter userFilter) throws Exception {
+		
+		System.out.println("Inside Controller");
+        System.out.println(userFilter);
+        
+        
+		List<RegisterUser> registerRequestList=new ArrayList<RegisterUser>();
+		 try {
+			 registerRequestList=registerUserService.getUserList(userFilter);		
+	          
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            System.out.println(e);
+	            throw new ErrorMsgException(e.getMessage());
+	            
+	        }
+		 return ResponseEntity.ok(registerRequestList);
+		 
+	}
 	
 	@PostMapping("/otpsend")
 	public boolean otpSendOnMail(@RequestBody OtpVerifing otpVerifing) throws UserAlreadyExist  {

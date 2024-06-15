@@ -14,7 +14,7 @@ public class FilterConfig {
 	        FilterRegistrationBean<CustomFilter> registrationBean = new FilterRegistrationBean<>();
 
 	        registrationBean.setFilter(new CustomFilter());
-	        registrationBean.addUrlPatterns("/ScrutinyGlobal/otpsend"); // Apply filter to specific URL patterns
+	        registrationBean.addUrlPatterns("/ScrutinyGlobal/otpsend","/login"); // Apply filter to specific URL patterns
 
 	        return registrationBean;
 	    }
