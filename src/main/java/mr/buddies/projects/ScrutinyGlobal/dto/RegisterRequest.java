@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class RegisterRequest {
 
+	    private Integer userId;
 	    private String name;
 	    private String email;
 	    private String password;
@@ -15,7 +16,7 @@ public class RegisterRequest {
 	    private Date dob;
 	    private String country;
 	    private String state;
-	    private String city;
+		private String city;
 	    private String zipcode;
 	    private String profession;
 	    private String accountType;
@@ -23,7 +24,27 @@ public class RegisterRequest {
 	    private String address;
 	    private Integer otp;
 	    
-	   
+	    public RegisterRequest(Integer userId, String name, String email, String password, String number,
+				String countryCode, Date dob, String country, String state, String city, String zipcode,
+				String profession, String accountType, String monthlySalary, String address, Integer otp) {
+			super();
+			this.userId = userId;
+			this.name = name;
+			this.email = email;
+			this.password = password;
+			this.number = number;
+			this.countryCode = countryCode;
+			this.dob = dob;
+			this.country = country;
+			this.state = state;
+			this.city = city;
+			this.zipcode = zipcode;
+			this.profession = profession;
+			this.accountType = accountType;
+			this.monthlySalary = monthlySalary;
+			this.address = address;
+			this.otp = otp;
+		}
 	   
 	    
 		public String getName() {

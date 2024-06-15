@@ -29,7 +29,8 @@ public class RegisterUser {
 	    private String city;
 	    private String zipcode;
 	    private String profession;
-	    private String acountType;
+	    private String accountType;
+	    private String address;
 	    private String monthlySalary;
 	    private Integer otp;
 	    private Integer aprove;
@@ -109,11 +110,19 @@ public class RegisterUser {
 		public void setProfession(String profession) {
 			this.profession = profession;
 		}
-		public String getAcountType() {
-			return acountType;
+		
+		
+		public String getAccountType() {
+			return accountType;
 		}
-		public void setAcountType(String acountType) {
-			this.acountType = acountType;
+		public void setAccountType(String accountType) {
+			this.accountType = accountType;
+		}
+		public String getAddress() {
+			return address;
+		}
+		public void setAddress(String address) {
+			this.address = address;
 		}
 		public String getMonthlySalary() {
 			return monthlySalary;
@@ -152,8 +161,8 @@ public class RegisterUser {
 		}
 		public RegisterUser(Integer userId, String name, String email, String password, String number,
 				String countryCode, Date dob, String country, String state, String city, String zipcode,
-				String profession, String acountType, String monthlySalary, Integer otp, Integer aprove, Date createTime,
-				Date updateTime) {
+				String profession, String accountType, String address, String monthlySalary, Integer otp,
+				Integer aprove, Date createTime, Date updateTime) {
 			super();
 			this.userId = userId;
 			this.name = name;
@@ -167,13 +176,15 @@ public class RegisterUser {
 			this.city = city;
 			this.zipcode = zipcode;
 			this.profession = profession;
-			this.acountType = acountType;
+			this.accountType = accountType;
+			this.address = address;
 			this.monthlySalary = monthlySalary;
 			this.otp = otp;
 			this.aprove = aprove;
 			this.createTime = createTime;
 			this.updateTime = updateTime;
 		}
+		
 	    
 	    
 	
