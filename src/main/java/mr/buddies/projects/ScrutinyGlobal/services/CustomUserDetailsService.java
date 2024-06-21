@@ -38,8 +38,8 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found !!");
         }
         else {
-//            HttpSession session=SessionStore.getSession();
-//            session.setAttribute("userAprovel", registerUser.getAprove());
+            HttpSession session=SessionStore.getSession();
+            session.setAttribute("userAproval", registerUser.getAprove());
         	return new CustomUserDetails(registerUser);
         }
 

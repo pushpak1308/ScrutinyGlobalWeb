@@ -49,10 +49,10 @@ public class JwtController {
         }
 //        UserDetails userDetails=null;
         HttpSession session=SessionStore.getSession();
-        System.out.println(session.getAttribute("userAprovel")+"-----userAprovel");
-        if(session.getAttribute("userAprovel").equals(0))
+        System.out.println(session.getAttribute("userAproval")+"-----userAproval");
+        if(session.getAttribute("userAproval").equals(0))
         {
-        	throw new ErrorMsgException("Waiting for aprovel");
+        	throw new ErrorMsgException("Waiting for aproval");
         }
         UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(jwtRequest.getUsername());
 		

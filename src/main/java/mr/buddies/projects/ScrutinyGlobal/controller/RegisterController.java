@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.sun.mail.iap.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -181,6 +182,21 @@ public class RegisterController {
 		return registerUserService.giveRoleToUser(settingRoleRquest);
 //		return true;
 		
+	}
+
+	@GetMapping("/getCountries")
+	public ResponseEntity<?> getAllCountries() throws Exception{
+
+		List<CountryData> requestAllCountriesList =  new ArrayList<>() ;
+
+		try{
+			requestAllCountriesList = countryService.getALlCountries();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			throw new ErrorMsgException(e.getMessage());
+		}
+		return ResponseEntity.ok(requestAllCountriesList);
 	}
 
 }
