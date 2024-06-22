@@ -187,7 +187,7 @@ public class RegisterController {
 	@GetMapping("/getCountries")
 	public ResponseEntity<?> getAllCountries() throws Exception{
 
-		List<CountryData> requestAllCountriesList =  new ArrayList<>() ;
+		List<CountryData> requestAllCountriesList =  new ArrayList<CountryData>() ;
 
 		try{
 			requestAllCountriesList = countryService.getALlCountries();
