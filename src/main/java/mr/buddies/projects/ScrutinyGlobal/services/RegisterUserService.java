@@ -3,6 +3,7 @@ package mr.buddies.projects.ScrutinyGlobal.services;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpSession;
@@ -62,7 +63,7 @@ public class RegisterUserService {
 			message.setSubject(subject);
 			mailSender.send(message);
 			System.out.println("Mail Send...");			
-			
+			 
 			}
 		   
 		   public boolean sendOtpOnMail(String email,HttpSession session) throws UserAlreadyExist {
@@ -90,6 +91,7 @@ public class RegisterUserService {
 			   
 			   return registerUserRepository.findAllUserForAprovel();
 		   }
+		   
 		  public List<RegisterUser> getAllActiveUser(){
 					   
 					   return registerUserRepository.findAllActiveUser();
@@ -139,4 +141,22 @@ public class RegisterUserService {
 			   
 			   
 		   }
+		   
+		   public List<Map<String,Object>> getListAsAccountType(String accountType) throws Exception {
+			   
+			   List<Map<String,Object>> registerRequestList=new ArrayList<Map<String,Object>>();
+			   
+			   if(accountType.toUpperCase().equals("CLIENT")) 
+				   registerRequestList =registerUserRepository.getListAsClient();
+							   
+			   if(accountType.toUpperCase().equals("VENDER")) 
+				   registerRequestList= registerUserRepository.getListAsVender();   
+			   
+			   return registerRequestList;
+			   
+			   
+			   
+		   }
+		   
+		   
 }
