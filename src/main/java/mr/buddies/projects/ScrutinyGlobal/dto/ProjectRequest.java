@@ -17,9 +17,9 @@ public class ProjectRequest {
 	    private String clientMappingId;
 	    private List<SurveyListDetails> surveyList;
 	    private Integer projectMinimumFee;
-	    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:MM")
+	    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	    private Date projectStartTime;
-	    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:MM")
+	    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	    private Date projectEndTime;
 		public String getProjectName() {
 			return projectName;

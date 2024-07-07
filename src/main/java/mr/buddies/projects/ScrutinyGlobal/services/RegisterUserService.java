@@ -20,8 +20,10 @@ import mr.buddies.projects.ScrutinyGlobal.dto.RegisterRequest;
 import mr.buddies.projects.ScrutinyGlobal.dto.SettingRoleRquest;
 import mr.buddies.projects.ScrutinyGlobal.dto.UserFilter;
 import mr.buddies.projects.ScrutinyGlobal.exception.UserAlreadyExist;
+import mr.buddies.projects.ScrutinyGlobal.model.ClientDetails;
 import mr.buddies.projects.ScrutinyGlobal.model.RegisterUser;
 import mr.buddies.projects.ScrutinyGlobal.model.VenderDetails;
+import mr.buddies.projects.ScrutinyGlobal.repo.ClientRepository;
 import mr.buddies.projects.ScrutinyGlobal.repo.RegisterUserRepository;
 import mr.buddies.projects.ScrutinyGlobal.repo.VenderRepository;
 
@@ -36,6 +38,9 @@ public class RegisterUserService {
 	
 	@Autowired
 	private VenderRepository venderRepository;
+	
+	@Autowired
+	private ClientRepository clientRepository;
 	
 	 public RegisterUserService(JavaMailSender mailSender) {
 	        this.mailSender = mailSender;
@@ -131,9 +136,14 @@ public class RegisterUserService {
 			   int check= registerUserRepository.giveRoleToUser(settingRoleRquest.getAccountType(), settingRoleRquest.getUserId());
 			   
 			   if(check==1) {
-				   if(settingRoleRquest.getAccountType().equals("vender")) {
+				   if((settingRoleRquest.getAccountType()).toUpperCase().equals("VENDER")) {
 					   VenderDetails venderDetails=new VenderDetails(settingRoleRquest.getUserId(),settingRoleRquest.getSuccessURL(),settingRoleRquest.getTerminateURL(),settingRoleRquest.getQuotaFullURL(),settingRoleRquest.getSecurityTerminateURL());
 					   venderRepository.save(venderDetails);
+				   }
+				   if((settingRoleRquest.getAccountType()).toUpperCase().equals("CLIENT")) {
+					   
+					   ClientDetails clientDetails=new ClientDetails(settingRoleRquest.getUserId(),settingRoleRquest.getContactName(),settingRoleRquest.getContactEmail(),settingRoleRquest.getAlternateNumber(),settingRoleRquest.getWebsite(),settingRoleRquest.getIndustry());
+					   clientRepository.save(clientDetails);
 				   }
 				   
 			   }
