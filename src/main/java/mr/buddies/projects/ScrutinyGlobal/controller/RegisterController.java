@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,7 +21,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import mr.buddies.projects.ScrutinyGlobal.dto.OtpVerifing;
 import mr.buddies.projects.ScrutinyGlobal.dto.RegisterRequest;
@@ -52,10 +55,7 @@ public class RegisterController {
 		
 		HttpSession session=SessionStore.getSession();
 		RegisterUser registerUser =new RegisterUser();
-//		System.out.println(session.getAttribute("username")+"-----email");
-//		System.out.println(session.getAttribute("userEmail")+"-----email");
-//		System.out.println(session.getAttribute("userOtp")+"-----userOtp");
-//		System.out.println(session.getAttribute("userOtpTime")+"-----userOtpTime");
+
 		if(registerRequest.getEmail().equals(session.getAttribute("userEmail"))) {
 			if(registerRequest.getOtp().equals(session.getAttribute("userOtp"))) {
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -182,6 +182,33 @@ public class RegisterController {
 		return registerUserService.giveRoleToUser(settingRoleRquest);
 //		return true;
 		
+	}
+	@PostMapping("/upload")
+    public String uploadFile(@RequestParam("file") MultipartFile file) {
+        try {
+        	
+//            fileService.saveFile(file);
+        	System.out.println("name= "+ file.getName());
+        	System.out.println("name= "+ file.getOriginalFilename());
+        	System.out.println("name= "+ file.getContentType());
+        	System.out.println("name= "+ file.getSize());
+        	System.out.println("name= "+ file.getBytes());
+        	System.out.println("name= "+ file.isEmpty());
+            return "File uploaded successfully: " + file.getOriginalFilename();
+        } catch (Exception e) {
+            return "Failed to upload file: " + file.getOriginalFilename();
+        }
+    }
+	
+	@GetMapping("/getListAsAcountType")
+	public ResponseEntity<?> getListAsAcountType(@RequestParam(name = "accountType") String accountType) throws Exception {
+		
+		List<Map<String,Object>> registerRequestList=new ArrayList<Map<String,Object>>();
+		
+		registerRequestList=registerUserService.getListAsAccountType(accountType);
+		
+		 return ResponseEntity.ok(registerRequestList);
+		 
 	}
 
 	@GetMapping("/getCountries")

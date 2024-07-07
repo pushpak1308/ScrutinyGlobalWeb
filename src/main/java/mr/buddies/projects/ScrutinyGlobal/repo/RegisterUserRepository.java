@@ -1,8 +1,7 @@
 package mr.buddies.projects.ScrutinyGlobal.repo;
 
 import java.util.List;
-
-
+import java.util.Map;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -48,5 +47,12 @@ public interface RegisterUserRepository extends JpaRepository<RegisterUser, Inte
 	  @Transactional
 	 @Query("UPDATE RegisterUser  ru SET ru.accountType = :accountType , ru.aprove = 1  WHERE ru.userId = :userId")
 	 public Integer giveRoleToUser(@Param("accountType") String accountType,@Param("userId") Integer userId);
+	 
+	 @Query(value = "SELECT * FROM register_user ru join client_details cd  on ru.user_id=cd.client_id", nativeQuery = true)
+	 	public List<Map<String,Object>> getListAsClient();
+	 
+	 @Query(value = "SELECT * FROM register_user ru join vender_details vd  on ru.user_id=vd.vender_id", nativeQuery = true)
+	 	public List<Map<String,Object>> getListAsVender();
+	 
 
 }

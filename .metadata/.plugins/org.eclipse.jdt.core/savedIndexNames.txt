@@ -1,2 +1,0 @@
-INDEX VERSION 1.131+C:\Users\hplap\Downloads\ScrutinyGlobal\ScrutinyGlobal\.metadata\.plugins\org.eclipse.jdt.core
-800413425.index
