@@ -69,7 +69,7 @@ public class ProjectController {
 					 surveyDetail.setCountry(surveyItems.getCountry());
 					 surveyDetail.setFr(surveyItems.getFr());
 					 surveyDetail.setLoi(surveyItems.getLoi());
-					 surveyDetail.setURL(surveyItems.getURL());
+					 surveyDetail.setSurveyURL(surveyItems.getSurveyURL());
 					 surveyDetail.setCpi(surveyItems.getCpi());
 					 surveyDetail.setTargetAudience(surveyItems.getTargetAudience());
 					 surveyDetail.setCompleteNeeds(surveyItems.getCompleteNeeds());

@@ -56,10 +56,10 @@ public class SurveyListDetails {
 		this.loi = loi;
 	}
 	
-	public String getURL() {
+	public String getSurveyURL() {
 		return surveyURL;
 	}
-	public void setURL(String surveyURL) {
+	public void setSurveyURL(String surveyURL) {
 		this.surveyURL = surveyURL;
 	}
 	public String getCpi() {

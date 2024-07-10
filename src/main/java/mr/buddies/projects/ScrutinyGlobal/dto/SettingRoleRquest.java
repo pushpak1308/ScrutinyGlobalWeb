@@ -9,6 +9,11 @@ public class SettingRoleRquest {
     private String quotaFullURL;
     private String securityTerminateURL;
     private String description;
+    private String contactName;
+    private String contactEmail;
+    private String alternateNumber;
+    private String website;
+    private String industry;
     
 	public Integer getUserId() {
 		return userId;
@@ -52,8 +57,41 @@ public class SettingRoleRquest {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	
+	public String getContactName() {
+		return contactName;
+	}
+	public void setContactName(String contactName) {
+		this.contactName = contactName;
+	}
+	public String getContactEmail() {
+		return contactEmail;
+	}
+	public void setContactEmail(String contactEmail) {
+		this.contactEmail = contactEmail;
+	}
+	public String getAlternateNumber() {
+		return alternateNumber;
+	}
+	public void setAlternateNumber(String alternateNumber) {
+		this.alternateNumber = alternateNumber;
+	}
+	public String getWebsite() {
+		return website;
+	}
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+	public String getIndustry() {
+		return industry;
+	}
+	public void setIndustry(String industry) {
+		this.industry = industry;
+	}
 	public SettingRoleRquest(Integer userId, String accountType, String successURL, String terminateURL,
-			String quotaFullURL, String securityTerminateURL, String description) {
+			String quotaFullURL, String securityTerminateURL, String description, String contactName,
+			String contactEmail, String alternateNumber, String website, String industry) {
 		super();
 		this.userId = userId;
 		this.accountType = accountType;
@@ -62,7 +100,13 @@ public class SettingRoleRquest {
 		this.quotaFullURL = quotaFullURL;
 		this.securityTerminateURL = securityTerminateURL;
 		this.description = description;
+		this.contactName = contactName;
+		this.contactEmail = contactEmail;
+		this.alternateNumber = alternateNumber;
+		this.website = website;
+		this.industry = industry;
 	}
+
 
 
     
