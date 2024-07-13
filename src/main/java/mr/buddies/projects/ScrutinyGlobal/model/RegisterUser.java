@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -23,6 +24,7 @@ public class RegisterUser {
 	    private String password;
 	    private String number;
 	    private String countryCode;
+		@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	    private Date dob;
 	    private String country;
 	    private String state;
