@@ -61,6 +61,9 @@ public class ClientDetails {
 		this.website = website;
 		this.industry = industry;
 	}
+	public ClientDetails(){
+		super();
+	}
     
     
 }
