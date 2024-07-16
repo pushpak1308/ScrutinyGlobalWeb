@@ -28,13 +28,16 @@ import mr.buddies.projects.ScrutinyGlobal.dto.OtpVerifing;
 import mr.buddies.projects.ScrutinyGlobal.dto.RegisterRequest;
 import mr.buddies.projects.ScrutinyGlobal.dto.SettingRoleRquest;
 import mr.buddies.projects.ScrutinyGlobal.dto.UserFilter;
+import mr.buddies.projects.ScrutinyGlobal.dto.VenderRequest;
 import mr.buddies.projects.ScrutinyGlobal.exception.ErrorMsgException;
 import mr.buddies.projects.ScrutinyGlobal.exception.UserAlreadyExist;
 import mr.buddies.projects.ScrutinyGlobal.helper.MD5Util;
 import mr.buddies.projects.ScrutinyGlobal.helper.SessionStore;
 import mr.buddies.projects.ScrutinyGlobal.model.CountryData;
+import mr.buddies.projects.ScrutinyGlobal.model.DocumentDetails;
 import mr.buddies.projects.ScrutinyGlobal.model.JwtResponse;
 import mr.buddies.projects.ScrutinyGlobal.model.RegisterUser;
+import mr.buddies.projects.ScrutinyGlobal.model.VenderDetails;
 import mr.buddies.projects.ScrutinyGlobal.services.CountryService;
 import mr.buddies.projects.ScrutinyGlobal.services.RegisterUserService;
 
@@ -182,25 +185,10 @@ public class RegisterController {
 //		return true;
 		
 	}
-	@PostMapping("/upload")
-    public String uploadFile(@RequestParam("file") MultipartFile file) {
-        try {
-        	
-//            fileService.saveFile(file);
-        	System.out.println("name= "+ file.getName());
-        	System.out.println("name= "+ file.getOriginalFilename());
-        	System.out.println("name= "+ file.getContentType());
-        	System.out.println("name= "+ file.getSize());
-        	System.out.println("name= "+ file.getBytes());
-        	System.out.println("name= "+ file.isEmpty());
-            return "File uploaded successfully: " + file.getOriginalFilename();
-        } catch (Exception e) {
-            return "Failed to upload file: " + file.getOriginalFilename();
-        }
-    }
+
 	
-	@GetMapping("/getListAsAcountType")
-	public ResponseEntity<?> getListAsAcountType(@RequestParam(name = "accountType") String accountType) throws Exception {
+	@GetMapping("/getListAsAccountType")
+	public ResponseEntity<?> getListAsAccountType(@RequestParam(name = "accountType") String accountType) throws Exception {
 		
 		List<Map<String,Object>> registerRequestList=new ArrayList<Map<String,Object>>();
 		
@@ -209,5 +197,35 @@ public class RegisterController {
 		 return ResponseEntity.ok(registerRequestList);
 		 
 	}
+	@PostMapping("/addVender")
+	public ResponseEntity<?> addVender(@RequestBody VenderRequest venderRequest) throws UserAlreadyExist  {
+		
+		RegisterUser registerUser =new RegisterUser();
+		VenderDetails venderDetails =new VenderDetails();
+		
+		registerUser.setName(venderRequest.getVenderName());
+		registerUser.setNumber(venderRequest.getNumber());
+		registerUser.setEmail(venderRequest.getEmail());
+		registerUser.setAddress(venderRequest.getAddress());
+		registerUser.setCity(venderRequest.getCity());
+		registerUser.setZipcode(venderRequest.getPincode());
+		registerUser.setCountry(venderRequest.getCountry());
+		venderDetails.setAlternateNumber(venderRequest.getAlternateNumber());
+		venderDetails.setSuccessURL(venderRequest.getSuccessURL());
+		venderDetails.setTerminateURL(venderRequest.getTerminateURL());
+		venderDetails.setQuotaFullURL(venderRequest.getQuotaFullURL());	
+		venderDetails.setRegisterationNumber(venderRequest.getRegisterationNumber());	
+		venderDetails.setPanNumber(venderRequest.getPanNumber());	
+		venderDetails.setBankBranchAddress(venderRequest.getBankBranchAddress());	
+		venderDetails.setAccountNumber(venderRequest.getAccountNumber());	
+		venderDetails.setIfscCode(venderRequest.getIfscCode());	
+		venderDetails.setAccountType(venderRequest.getAccountType());	
+		boolean result=registerUserService.addVender(registerUser, venderDetails);
+		
+		return ResponseEntity.ok(result);
+		
+		
+	}
+	
 
 }

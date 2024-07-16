@@ -61,6 +61,10 @@ public class ClientDetails {
 		this.website = website;
 		this.industry = industry;
 	}
+	public ClientDetails() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
     
     
 }
