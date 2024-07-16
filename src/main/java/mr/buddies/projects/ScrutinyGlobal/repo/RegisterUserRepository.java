@@ -45,7 +45,7 @@ public interface RegisterUserRepository extends JpaRepository<RegisterUser, Inte
 	 
 	 @Modifying
 	  @Transactional
-	 @Query("UPDATE RegisterUser  ru SET ru.accountType = :accountType , ru.aprove = 1  WHERE ru.userId = :userId")
+	 @Query("UPDATE RegisterUser  ru SET ru.accountType = :accountType , ru.aprove = 1  WHERE ru.userId = :userId and ru.aprove != 1")
 	 public Integer giveRoleToUser(@Param("accountType") String accountType,@Param("userId") Integer userId);
 	 
 	 @Query(value = "SELECT * FROM register_user ru join client_details cd  on ru.user_id=cd.client_id", nativeQuery = true)

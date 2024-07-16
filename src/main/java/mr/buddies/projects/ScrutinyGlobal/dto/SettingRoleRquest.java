@@ -8,6 +8,12 @@ public class SettingRoleRquest {
     private String terminateURL;
     private String quotaFullURL;
     private String securityTerminateURL;
+    private String registerationNumber;
+    private String panNumber;
+    private String bankBranchAddress;
+    private String accountNumber;
+    private String ifscCode;
+    private String bankAccountType;
     private String description;
     private String contactName;
     private String contactEmail;
@@ -89,9 +95,46 @@ public class SettingRoleRquest {
 	public void setIndustry(String industry) {
 		this.industry = industry;
 	}
+	public String getRegisterationNumber() {
+		return registerationNumber;
+	}
+	public void setRegisterationNumber(String registerationNumber) {
+		this.registerationNumber = registerationNumber;
+	}
+	public String getPanNumber() {
+		return panNumber;
+	}
+	public void setPanNumber(String panNumber) {
+		this.panNumber = panNumber;
+	}
+	public String getBankBranchAddress() {
+		return bankBranchAddress;
+	}
+	public void setBankBranchAddress(String bankBranchAddress) {
+		this.bankBranchAddress = bankBranchAddress;
+	}
+	public String getAccountNumber() {
+		return accountNumber;
+	}
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+	public String getIfscCode() {
+		return ifscCode;
+	}
+	public void setIfscCode(String ifscCode) {
+		this.ifscCode = ifscCode;
+	}
+	public String getBankAccountType() {
+		return bankAccountType;
+	}
+	public void setBankAccountType(String bankAccountType) {
+		this.bankAccountType = bankAccountType;
+	}
 	public SettingRoleRquest(Integer userId, String accountType, String successURL, String terminateURL,
-			String quotaFullURL, String securityTerminateURL, String description, String contactName,
-			String contactEmail, String alternateNumber, String website, String industry) {
+			String quotaFullURL, String securityTerminateURL, String registerationNumber, String panNumber,
+			String bankBranchAddress, String accountNumber, String ifscCode, String bankAccountType, String description,
+			String contactName, String contactEmail, String alternateNumber, String website, String industry) {
 		super();
 		this.userId = userId;
 		this.accountType = accountType;
@@ -99,6 +142,12 @@ public class SettingRoleRquest {
 		this.terminateURL = terminateURL;
 		this.quotaFullURL = quotaFullURL;
 		this.securityTerminateURL = securityTerminateURL;
+		this.registerationNumber = registerationNumber;
+		this.panNumber = panNumber;
+		this.bankBranchAddress = bankBranchAddress;
+		this.accountNumber = accountNumber;
+		this.ifscCode = ifscCode;
+		this.bankAccountType = bankAccountType;
 		this.description = description;
 		this.contactName = contactName;
 		this.contactEmail = contactEmail;
@@ -106,6 +155,7 @@ public class SettingRoleRquest {
 		this.website = website;
 		this.industry = industry;
 	}
+
 
 
 

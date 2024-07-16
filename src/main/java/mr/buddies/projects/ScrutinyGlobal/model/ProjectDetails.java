@@ -23,7 +23,7 @@ public class ProjectDetails {
 	    private String audienceType;
 	    private String projectHeadId;
 	    private String preSaleSPOC;
-	    private String clientMappingId;
+	    private Integer clientMappingId;
 	    private String venderMappingId;
 	    private String surveyMappingId;
 	    private String docMappingId;
@@ -32,8 +32,8 @@ public class ProjectDetails {
 	    private Integer projectMinimumFee;
 	    private Date projectStartTime;
 	    private Date projectEndTime;
-	    private Date createTime;
-	    private Date updateTime;
+	    private Date projectCreateTime;
+	    private Date projectUpdateTime;
 	    
 		public Integer getProjectId() {
 			return projectId;
@@ -72,10 +72,11 @@ public class ProjectDetails {
 		public void setPreSaleSPOC(String preSaleSPOC) {
 			this.preSaleSPOC = preSaleSPOC;
 		}
-		public String getClientMappingId() {
+	
+		public Integer getClientMappingId() {
 			return clientMappingId;
 		}
-		public void setClientMappingId(String clientMappingId) {
+		public void setClientMappingId(Integer clientMappingId) {
 			this.clientMappingId = clientMappingId;
 		}
 		public String getVenderMappingId() {
@@ -126,23 +127,24 @@ public class ProjectDetails {
 		public void setProjectEndTime(Date projectEndTime) {
 			this.projectEndTime = projectEndTime;
 		}
-		public Date getCreateTime() {
-			return createTime;
+		
+		public Date getProjectCreateTime() {
+			return projectCreateTime;
 		}
-		public void setCreateTime(Date createTime) {
-			this.createTime = createTime;
+		public void setProjectCreateTime(Date projectCreateTime) {
+			this.projectCreateTime = projectCreateTime;
 		}
-		public Date getUpdateTime() {
-			return updateTime;
+		public Date getProjectUpdateTime() {
+			return projectUpdateTime;
 		}
-		public void setUpdateTime(Date updateTime) {
-			this.updateTime = updateTime;
+		public void setProjectUpdateTime(Date projectUpdateTime) {
+			this.projectUpdateTime = projectUpdateTime;
 		}
 		public ProjectDetails(Integer projectId, String projectName, String description, String audienceType,
-				String projectHeadId, String preSaleSPOC, String clientMappingId, String venderMappingId,
+				String projectHeadId, String preSaleSPOC, Integer clientMappingId, String venderMappingId,
 				String surveyMappingId, String docMappingId, String invoiceMappingId, String bankDetailId,
-				Integer projectMinimumFee, Date projectStartTime, Date projectEndTime, Date createTime,
-				Date updateTime) {
+				Integer projectMinimumFee, Date projectStartTime, Date projectEndTime, Date projectCreateTime,
+				Date projectUpdateTime) {
 			super();
 			this.projectId = projectId;
 			this.projectName = projectName;
@@ -159,8 +161,8 @@ public class ProjectDetails {
 			this.projectMinimumFee = projectMinimumFee;
 			this.projectStartTime = projectStartTime;
 			this.projectEndTime = projectEndTime;
-			this.createTime = createTime;
-			this.updateTime = updateTime;
+			this.projectCreateTime = projectCreateTime;
+			this.projectUpdateTime = projectUpdateTime;
 		}
 		public ProjectDetails() {
 			super();
@@ -174,7 +176,7 @@ public class ProjectDetails {
 					+ venderMappingId + ", surveyMappingId=" + surveyMappingId + ", docMappingId=" + docMappingId
 					+ ", invoiceMappingId=" + invoiceMappingId + ", bankDetailId=" + bankDetailId
 					+ ", projectMinimumFee=" + projectMinimumFee + ", projectStartTime=" + projectStartTime
-					+ ", projectEndTime=" + projectEndTime + ", createTime=" + createTime + ", updateTime=" + updateTime
+					+ ", projectEndTime=" + projectEndTime + ", createTime=" + projectCreateTime + ", updateTime=" + projectUpdateTime
 					+ "]";
 		}
 	    

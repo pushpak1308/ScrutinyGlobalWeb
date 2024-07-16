@@ -137,7 +137,21 @@ public class RegisterUserService {
 			   
 			   if(check==1) {
 				   if((settingRoleRquest.getAccountType()).toUpperCase().equals("VENDER")) {
-					   VenderDetails venderDetails=new VenderDetails(settingRoleRquest.getUserId(),settingRoleRquest.getSuccessURL(),settingRoleRquest.getTerminateURL(),settingRoleRquest.getQuotaFullURL(),settingRoleRquest.getSecurityTerminateURL());
+					   VenderDetails venderDetails=new VenderDetails();
+					   venderDetails.setVenderId(settingRoleRquest.getUserId());
+					   venderDetails.setSuccessURL(settingRoleRquest.getSuccessURL());
+					   venderDetails.setTerminateURL(settingRoleRquest.getTerminateURL());
+					   venderDetails.setQuotaFullURL(settingRoleRquest.getQuotaFullURL());
+					   venderDetails.setSecurityTerminateURL(settingRoleRquest.getSecurityTerminateURL());
+					   venderDetails.setAlternateNumber(settingRoleRquest.getAlternateNumber());
+					   venderDetails.setRegisterationNumber(settingRoleRquest.getRegisterationNumber());
+					   venderDetails.setPanNumber(settingRoleRquest.getPanNumber());
+					   venderDetails.setBankBranchAddress(settingRoleRquest.getBankBranchAddress());
+					   venderDetails.setAccountNumber(settingRoleRquest.getAccountNumber());
+					   venderDetails.setIfscCode(settingRoleRquest.getIfscCode());
+					   venderDetails.setAccountType(settingRoleRquest.getAccountType());
+					   
+					   
 					   venderRepository.save(venderDetails);
 				   }
 				   if((settingRoleRquest.getAccountType()).toUpperCase().equals("CLIENT")) {
@@ -146,7 +160,8 @@ public class RegisterUserService {
 					   clientRepository.save(clientDetails);
 				   }
 				   
-			   }
+			   }else
+				   return false;
 			   return true;
 			   
 			   
@@ -167,6 +182,22 @@ public class RegisterUserService {
 			   
 			   
 		   }
+		   
+		   
+		   public boolean addVender(RegisterUser registerUser,VenderDetails venderDetails) {
+			   
+			   
+				try {					
+					  registerUserRepository.save(registerUser);
+					   venderRepository.save(venderDetails);
+					return true;
+					
+				}catch(Exception e) {
+					System.out.println("exception"+e);
+					return false;
+				}
+		   }
+		   
 		   
 		   
 }

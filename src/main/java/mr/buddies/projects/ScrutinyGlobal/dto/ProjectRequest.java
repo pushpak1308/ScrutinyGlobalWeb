@@ -14,7 +14,7 @@ public class ProjectRequest {
 	    private String audienceType;
 	    private String projectHeadId;
 	    private String preSaleSPOC;
-	    private String clientMappingId;
+	    private Integer clientMappingId;
 	    private List<SurveyListDetails> surveyList;
 	    private Integer projectMinimumFee;
 	    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
@@ -51,10 +51,11 @@ public class ProjectRequest {
 		public void setPreSaleSPOC(String preSaleSPOC) {
 			this.preSaleSPOC = preSaleSPOC;
 		}
-		public String getClientMappingId() {
+	
+		public Integer getClientMappingId() {
 			return clientMappingId;
 		}
-		public void setClientMappingId(String clientMappingId) {
+		public void setClientMappingId(Integer clientMappingId) {
 			this.clientMappingId = clientMappingId;
 		}
 		public List<SurveyListDetails> getSurveyList() {
@@ -82,7 +83,7 @@ public class ProjectRequest {
 			this.projectEndTime = projectEndTime;
 		}
 		public ProjectRequest(String projectName, String description, String audienceType, String projectHeadId,
-				String preSaleSPOC, String clientMappingId, List<SurveyListDetails> surveyList,
+				String preSaleSPOC, Integer clientMappingId, List<SurveyListDetails> surveyList,
 				Integer projectMinimumFee, Date projectStartTime, Date projectEndTime) {
 			super();
 			this.projectName = projectName;
