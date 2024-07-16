@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import mr.buddies.projects.ScrutinyGlobal.model.ProjectDetails;
-import mr.buddies.projects.ScrutinyGlobal.model.RegisterUser;
 import mr.buddies.projects.ScrutinyGlobal.repo.ProjectRepository;
-import mr.buddies.projects.ScrutinyGlobal.repo.RegisterUserRepository;
+
+import java.util.List;
 
 @Service
 public class ProjectService {
@@ -25,6 +25,11 @@ public class ProjectService {
 			return false;
 		}
 		
+	}
+
+
+	public List<ProjectDetails> getProjectDetails(){
+		return projectRepository.findAll();
 	}
 	
 

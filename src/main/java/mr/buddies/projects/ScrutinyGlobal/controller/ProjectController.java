@@ -7,11 +7,7 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import mr.buddies.projects.ScrutinyGlobal.dto.ProjectRequest;
 import mr.buddies.projects.ScrutinyGlobal.dto.ProjectResponse;
@@ -81,11 +77,39 @@ public class ProjectController {
 			 surveyService.saveSurveyLis(surveyList);			
 			
 		}
-		
-		
-		
-	
 		 return ResponseEntity.ok(projectRequest);
 	}
+
+	@GetMapping("/getProjectDetails")
+	public ResponseEntity<?> getProjectDetails() throws Exception{
+
+		List<ProjectDetails> projectsList = new ArrayList<ProjectDetails>();
+
+		try{
+			projectsList = projectService.getProjectDetails();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			throw new ErrorMsgException(e.getMessage());
+		}
+		return ResponseEntity.ok(projectsList);
+	}
+
+	@GetMapping("/getSurveyDetails")
+	public ResponseEntity<?> getSurveyListDetails() throws Exception{
+
+		List<SurveyListDetails> surveyList = new ArrayList<SurveyListDetails>();
+
+		try{
+			surveyList = surveyService.getSurveyListDetails();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			throw new ErrorMsgException(e.getMessage());
+		}
+		return ResponseEntity.ok(surveyList);
+	}
+
+
 
 }

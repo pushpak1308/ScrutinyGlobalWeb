@@ -28,4 +28,8 @@ public class SurveyService {
 		
 	}
 
+	public List<SurveyListDetails> getSurveyListDetails(){
+		return surveyRepository.findAll();
+	}
+
 }
