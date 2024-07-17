@@ -130,7 +130,7 @@ public class ProjectController {
         	documentDetails.setSize(file.getSize());
         	documentDetails.setData(file.getBytes());
         	if(type.equals("project")) {
-        		projectService.setDocumentDetails(mappingId,documentDetails);
+        		projectService.setDocumentDetailsForProject(mappingId,documentDetails);
         	}
         	
         	
