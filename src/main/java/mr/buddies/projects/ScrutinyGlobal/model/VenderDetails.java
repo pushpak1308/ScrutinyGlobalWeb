@@ -22,7 +22,7 @@ public class VenderDetails {
     private String bankBranchAddress;
     private String accountNumber;
     private String ifscCode;
-    private String accountType;
+    private String bankAccountType;
     private String signatureField;
     private String docMappingId;
     
@@ -92,11 +92,12 @@ public class VenderDetails {
 	public void setIfscCode(String ifscCode) {
 		this.ifscCode = ifscCode;
 	}
-	public String getAccountType() {
-		return accountType;
+
+	public String getBankAccountType() {
+		return bankAccountType;
 	}
-	public void setAccountType(String accountType) {
-		this.accountType = accountType;
+	public void setBankAccountType(String bankAccountType) {
+		this.bankAccountType = bankAccountType;
 	}
 	public String getSignatureField() {
 		return signatureField;
@@ -116,7 +117,7 @@ public class VenderDetails {
 	}
 	public VenderDetails(Integer venderId, String successURL, String terminateURL, String quotaFullURL,
 			String securityTerminateURL, String alternateNumber, String registerationNumber, String panNumber,
-			String bankBranchAddress, String accountNumber, String ifscCode, String accountType, String signatureField,
+			String bankBranchAddress, String accountNumber, String ifscCode, String bankAccountType, String signatureField,
 			String docMappingId) {
 		super();
 		this.venderId = venderId;
@@ -130,7 +131,7 @@ public class VenderDetails {
 		this.bankBranchAddress = bankBranchAddress;
 		this.accountNumber = accountNumber;
 		this.ifscCode = ifscCode;
-		this.accountType = accountType;
+		this.bankAccountType = bankAccountType;
 		this.signatureField = signatureField;
 		this.docMappingId = docMappingId;
 	}

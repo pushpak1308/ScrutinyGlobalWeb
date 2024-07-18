@@ -26,6 +26,7 @@ import mr.buddies.projects.ScrutinyGlobal.repo.DocumentRepository;
 import mr.buddies.projects.ScrutinyGlobal.repo.ProjectRepository;
 import mr.buddies.projects.ScrutinyGlobal.repo.RegisterUserRepository;
 import mr.buddies.projects.ScrutinyGlobal.repo.VenderMappingRepository;
+import mr.buddies.projects.ScrutinyGlobal.repo.VenderRepository;
 
 
 @Service
@@ -36,6 +37,9 @@ public class ProjectService {
 	
 	@Autowired
 	private VenderMappingRepository venderMappingRepository;
+	
+	@Autowired
+	private VenderRepository venderRepository;
 	
 	@Autowired
 	private DocumentRepository documentRepository;
@@ -60,11 +64,11 @@ public class ProjectService {
 //	}
 //=======
 	 @Transactional
-	   public boolean setDocumentDetails(Integer mappingId,DocumentDetails documentDetails) {
-		 
+	   public boolean setDocumentDetailsForProject(Integer mappingId,DocumentDetails documentDetails) {
+
 		 String DocMappingId="";
 		 Random random = new Random();
-		 int number=1000 + random.nextInt(9000);	
+		 int number=1000 + random.nextInt(9000);
 		 DocMappingId="D"+number;
 		  Integer check=projectRepository.setDocumentId(DocMappingId, mappingId);
 		  if(check==1) {
@@ -72,10 +76,28 @@ public class ProjectService {
 				 documentRepository.save(documentDetails);
 				 return true;
 		  }else
+				 return false;
+	 }
+//<<<<<<< HEAD
+//>>>>>>> upstream/development
+	
+//=======
+	 @Transactional
+	 public boolean setDocumentDetailsForVender(Integer mappingId,DocumentDetails documentDetails) {
+		 
+		 String DocMappingId="";
+		 Random random = new Random();
+		 int number=1000 + random.nextInt(9000);	
+		 DocMappingId="V"+number;
+		 Integer check=venderRepository.setDocumentId(DocMappingId, mappingId);
+		 if(check==1) {
+			  documentDetails.setMappingId(DocMappingId);
+				 documentRepository.save(documentDetails);
+				 return true;
+		  }else 	
 				 return false;		 
 	 }
 //>>>>>>> upstream/development
-	
 	
 	   @Transactional
 	   public boolean setVenderMappingDetails(VenderAddToProject venderAddToProject) {
@@ -126,5 +148,8 @@ public class ProjectService {
 	   
 	   
    }
+	   
+	   
+	   
 
 }
