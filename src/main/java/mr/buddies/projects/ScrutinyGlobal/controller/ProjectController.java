@@ -145,20 +145,20 @@ public class ProjectController {
     }
 	
 
-	@GetMapping("/getProjectDetails")
-	public ResponseEntity<?> getProjectDetails() throws Exception{
-
-		List<ProjectDetails> projectsList = new ArrayList<ProjectDetails>();
-
-		try{
-			projectsList = projectService.getProjectDetails();
-		}
-		catch(Exception e){
-			e.printStackTrace();
-			throw new ErrorMsgException(e.getMessage());
-		}
-		return ResponseEntity.ok(projectsList);
-	}
+//	@GetMapping("/getProjectDetails")
+//	public ResponseEntity<?> getProjectDetails() throws Exception{
+//
+//		List<ProjectDetails> projectsList = new ArrayList<ProjectDetails>();
+//
+//		try{
+//			projectsList = projectService.getProjectDetails();
+//		}
+//		catch(Exception e){
+//			e.printStackTrace();
+//			throw new ErrorMsgException(e.getMessage());
+//		}
+//		return ResponseEntity.ok(projectsList);
+//	}
 
 	@GetMapping("/getSurveyDetails")
 	public ResponseEntity<?> getSurveyListDetails() throws Exception{
