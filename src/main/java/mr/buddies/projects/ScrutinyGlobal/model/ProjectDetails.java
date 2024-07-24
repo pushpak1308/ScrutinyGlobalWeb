@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -30,7 +31,11 @@ public class ProjectDetails {
 	    private String invoiceMappingId;
 	    private String bankDetailId;
 	    private Integer projectMinimumFee;
+
+		@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	    private Date projectStartTime;
+
+		@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	    private Date projectEndTime;
 	    private Date projectCreateTime;
 	    private Date projectUpdateTime;
